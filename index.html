@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Li Suhua 的个人网站——学生经历、比赛荣誉与 Vibecoding 作品" />
+<title>Li Suhua · 用 AI 把想法变成作品</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>" />
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FFF6EC; --bg2:#FFEFE0;
+  --ink:#4A3A31; --ink-soft:#97826F; --ink-faint:#B9A48F;
+  --coral:#FF7A59; --coral-deep:#EF5B36;
+  --sun:#FFC24B; --mint:#35BBA3; --pink:#FF9EB2;
+  --card:#FFFFFF; --line:#F3E3D3;
+  --radius:24px;
+  --shadow:0 12px 32px rgba(226,120,80,.14);
+  --shadow-lg:0 20px 44px rgba(226,120,80,.20);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC","Noto Sans CJK SC",sans-serif;
+  background-color:var(--bg);
+  background-image:radial-gradient(rgba(255,194,75,.18) 1.6px, transparent 1.6px);
+  background-size:26px 26px;
+  color:var(--ink);
+  line-height:1.75;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:#FFD9A8;color:var(--ink)}
+a{text-decoration:none;color:inherit}
+section[id]{scroll-margin-top:72px}
+
+/* ---------- 顶部导航 ---------- */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,246,236,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:2px dashed var(--line)}
+.nav-inner{max-width:1060px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:8px;font-weight:900;font-size:19px;letter-spacing:.5px}
+.brand svg{animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.nav-links{display:flex;gap:26px}
+.nav-links a{font-size:15px;font-weight:600;color:var(--ink-soft);padding:4px 2px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.nav-links a:hover{color:var(--coral-deep)}
+.nav-links a.active{color:var(--coral-deep);border-bottom-color:var(--coral)}
+
+/* ---------- 首屏 ---------- */
+.hero{position:relative;min-height:calc(100vh - 60px);display:flex;align-items:center;padding:48px 22px 70px}
+.hero-inner{max-width:1060px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.chip{display:inline-block;background:var(--card);border:2px solid var(--line);border-radius:999px;padding:6px 16px;font-size:14px;font-weight:600;box-shadow:0 4px 12px rgba(226,120,80,.10);transform:rotate(-1.2deg);margin-bottom:20px}
+.hero h1{font-size:clamp(46px,7vw,74px);font-weight:900;line-height:1.15;letter-spacing:1px}
+.hero h1 .hl{background:linear-gradient(transparent 62%, rgba(255,194,75,.55) 62%);border-radius:4px}
+.tagline{margin-top:10px;font-size:clamp(17px,2.2vw,21px);font-weight:700;color:var(--ink-soft)}
+.tagline em{font-style:normal;color:var(--coral-deep)}
+.intro{margin-top:18px;max-width:460px;color:var(--ink-soft);font-size:16px}
+.cta{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:999px;font-weight:800;font-size:15px;transition:transform .25s,box-shadow .25s;will-change:transform}
+.btn-primary{background:linear-gradient(135deg,var(--coral),var(--coral-deep));color:#fff;box-shadow:0 10px 24px rgba(239,91,54,.32)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 30px rgba(239,91,54,.38)}
+.btn-ghost{background:var(--card);border:2px solid var(--line);color:var(--ink)}
+.btn-ghost:hover{transform:translateY(-3px);border-color:var(--coral);color:var(--coral-deep)}
+.hero-art svg{width:100%;max-width:520px;height:auto;display:block;margin:0 auto}
+.f1{animation:floaty 5.5s ease-in-out infinite}
+.f2{animation:floaty 6.5s ease-in-out infinite .8s}
+.f3{animation:floaty 7s ease-in-out infinite .4s}
+.f4{animation:floaty 5s ease-in-out infinite 1.2s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.blink{animation:blink 1.1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.scroll-hint{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);font-size:13px;letter-spacing:3px;color:var(--ink-faint);animation:bounce 2s infinite;white-space:nowrap}
+@keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+
+/* ---------- 通用板块 ---------- */
+.section{max-width:1060px;margin:0 auto;padding:76px 22px}
+.section-head{text-align:center;margin-bottom:44px}
+.section-head h2{font-size:clamp(28px,4vw,38px);font-weight:900;letter-spacing:1px}
+.section-head .sq{display:block;margin:10px auto 0}
+.section-sub{color:var(--ink-soft);margin-top:8px;font-size:15px}
+
+/* ---------- 关于我 ---------- */
+.about-card{position:relative;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:40px 44px;border:2px solid #FBEFE3}
+.about-card::before,.about-card::after{content:"";position:absolute;top:-13px;width:112px;height:24px;border-radius:4px;box-shadow:0 2px 6px rgba(226,120,80,.12)}
+.about-card::before{left:52px;background:rgba(255,194,75,.55);transform:rotate(-4deg)}
+.about-card::after{right:52px;background:rgba(255,158,178,.5);transform:rotate(5deg)}
+.about-card p+p{margin-top:12px}
+.about-card strong{color:var(--coral-deep)}
+.facts{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px}
+.fact{background:var(--bg2);border-radius:999px;padding:6px 15px;font-size:14px;font-weight:700;color:#8A6A52}
+
+/* ---------- 经历时间线 ---------- */
+.timeline{position:relative;padding-left:36px;max-width:760px;margin:0 auto}
+.timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;border-left:3px dashed #F2D3BC}
+.tl-item{position:relative;margin-bottom:26px}
+.tl-item:last-child{margin-bottom:0}
+.tl-dot{position:absolute;left:-36px;top:8px;width:20px;height:20px;border-radius:50%;background:var(--c,var(--coral));border:4px solid #fff;box-shadow:0 0 0 3px var(--line)}
+.tl-card{background:var(--card);border-radius:20px;padding:20px 24px;box-shadow:var(--shadow);border:2px solid transparent;transition:transform .25s,box-shadow .25s}
+.tl-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.tl-year{display:inline-block;font-size:13px;font-weight:800;color:var(--coral-deep);background:#FFEDE4;border-radius:999px;padding:2px 12px;margin-bottom:8px}
+.tl-card h3{font-size:19px;font-weight:800}
+.tl-card p{color:var(--ink-soft);font-size:15px;margin-top:4px}
+.tl-item.live .tl-card{background:linear-gradient(135deg,#fff,#FFF3E8);border-color:#FFD9C6}
+.tl-item.live .tl-year{background:#E7F9F4;color:#1E9A84}
+.tl-note{text-align:center;margin-top:26px;font-size:13px;color:var(--ink-faint)}
+
+/* ---------- Vibecoding 项目 ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);border:2px solid transparent;transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px) rotate(-.4deg);box-shadow:var(--shadow-lg)}
+.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.card-icon{width:52px;height:52px;border-radius:16px;background:var(--bg2);display:grid;place-items:center;font-size:26px;transform:rotate(-4deg)}
+.badge{font-size:12px;font-weight:800;padding:4px 12px;border-radius:999px;background:var(--bg2);color:var(--ink-soft)}
+.badge-live{background:#E7F9F4;color:#1E9A84;display:inline-flex;align-items:center;gap:6px}
+.badge-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#1E9A84;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.3}}
+.card h3{font-size:19px;font-weight:900}
+.card>p{color:var(--ink-soft);font-size:14.5px;margin-top:10px;flex:1}
+.tags{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.tags span{font-size:12.5px;font-weight:700;padding:3px 11px;border-radius:999px}
+.tags span:nth-child(4n+1){background:#FFE9E1;color:#D9532E}
+.tags span:nth-child(4n+2){background:#FFF3D6;color:#B98A1E}
+.tags span:nth-child(4n+3){background:#DDF5F0;color:#1E9A84}
+.tags span:nth-child(4n+4){background:#FFE7EE;color:#D96C86}
+.card-ph{border-style:dashed;border-color:#EBD9C6;background:rgba(255,255,255,.55);box-shadow:none}
+.card-ph:hover{box-shadow:var(--shadow)}
+.card-ph h3,.card-ph p{color:var(--ink-faint)}
+
+/* ---------- 证书缩略图 ---------- */
+.cert{display:block;border-radius:14px;overflow:hidden;border:2px solid var(--line);margin-bottom:16px;background:#FFFBF4}
+.cert img{display:block;width:100%;height:170px;object-fit:contain;transition:transform .4s ease}
+.cert:hover img{transform:scale(1.03)}
+
+/* ---------- 技能证书 ---------- */
+.skill-score{display:flex;align-items:baseline;gap:10px;margin:4px 0 2px}
+.skill-score b{font-size:46px;font-weight:900;line-height:1;background:linear-gradient(135deg,var(--coral),var(--coral-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+.skill-score span{font-size:14px;font-weight:800;color:var(--ink-soft)}
+.skill-meta{font-size:13.5px;color:var(--ink-faint);margin-top:6px}
+.skill-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:14px;font-weight:800;color:var(--coral-deep);border-bottom:2px solid transparent;transition:border-color .2s;align-self:flex-start}
+.skill-link:hover{border-bottom-color:var(--coral)}
+.skill-cert{display:block;border-radius:14px;overflow:hidden;border:2px solid var(--line);margin-bottom:16px;background:#FFFBF4}
+.skill-cert img{display:block;width:100%;height:200px;object-fit:contain;transition:transform .4s ease}
+.skill-cert:hover img{transform:scale(1.03)}
+
+/* ---------- 页脚 ---------- */
+.footer{position:relative;text-align:center;padding:70px 22px 42px;border-top:2px dashed var(--line);overflow:hidden}
+.footer .blob{position:absolute;border-radius:50%;filter:blur(2px);opacity:.5}
+.footer .b1{width:180px;height:180px;background:#FFE3C9;left:-60px;top:-40px}
+.footer .b2{width:140px;height:140px;background:#FFE7EE;right:-40px;bottom:-50px}
+.footer-title{font-size:22px;font-weight:900}
+.footer-contact{margin-top:14px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.footer-contact span{background:var(--card);border:2px solid var(--line);border-radius:999px;padding:6px 16px;font-size:14px;font-weight:600;color:var(--ink-soft);transition:color .2s,border-color .2s}
+.footer-contact a{display:inline-block}
+.footer-contact a:hover span{color:var(--coral-deep);border-color:var(--coral)}
+.footer-note{margin-top:22px;font-size:13px;color:var(--ink-faint)}
+
+/* ---------- 滚动显现 ---------- */
+.reveal{opacity:0}
+.reveal.in{animation:fadeUp .7s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.cards .card:nth-child(2),.timeline .tl-item:nth-child(2){animation-delay:.08s}
+.cards .card:nth-child(3),.timeline .tl-item:nth-child(3){animation-delay:.16s}
+
+@media (max-width:920px){
+  .hero{min-height:auto}
+  .hero-inner{grid-template-columns:1fr;text-align:center}
+  .intro{margin-left:auto;margin-right:auto}
+  .cta{justify-content:center}
+  .hero-art{max-width:430px;margin:8px auto 0}
+}
+@media (max-width:640px){
+  .nav-inner{padding:10px 16px}
+  .nav-links{gap:16px}
+  .nav-links a{font-size:14px}
+  .section{padding:56px 18px}
+  .about-card{padding:28px 22px}
+  .about-card::before,.about-card::after{width:84px}
+  .timeline{padding-left:30px}
+  .tl-dot{left:-30px;width:18px;height:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body id="top">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.8 Q13.6 9 22.2 12 Q13.6 15 12 22.2 Q10.4 15 1.8 12 Q10.4 9 12 1.8 Z" fill="#FF7A59"/></svg>
+      <span>Li&nbsp;Suhua</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">关于</a>
+      <a href="#journey">经历</a>
+      <a href="#honors">荣誉</a>
+      <a href="#skills">技能</a>
+      <a href="#projects">Vibecoding</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="chip">👋 你好呀，欢迎来到我的小站</span>
+      <h1>Hi, I'm <span class="hl">Li&nbsp;Suhua</span></h1>
+      <p class="tagline">学生 · 创作者 · <em>Vibecoder</em></p>
+      <p class="intro">在这里，我用 AI 把脑子里奇奇怪怪的想法，一点点变成看得见的作品。相信慢慢来，比较快。</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#projects">看看我的 Vibecoding →</a>
+        <a class="btn btn-ghost" href="#journey">了解我的经历</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 520 440" xmlns="http://www.w3.org/2000/svg" role="img">
+        <defs>
+          <linearGradient id="bgG" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#FFE9D6"/>
+            <stop offset="1" stop-color="#FFD8C0"/>
+          </linearGradient>
+        </defs>
+
+        <!-- 背景 -->
+        <circle cx="262" cy="212" r="182" fill="url(#bgG)"/>
+        <circle cx="262" cy="212" r="198" fill="none" stroke="#FFC24B" stroke-width="3" stroke-dasharray="1 13" stroke-linecap="round"/>
+
+        <!-- 漂浮小物 -->
+        <g class="f1"><path d="M112 88 Q119 101 132 108 Q119 115 112 128 Q105 115 92 108 Q105 101 112 88 Z" fill="#FFC24B"/></g>
+        <g class="f2"><path d="M446 104 Q450 113 459 117 Q450 121 446 130 Q442 121 433 117 Q442 113 446 104 Z" fill="#FF7A59"/></g>
+        <g class="f3"><path d="M0 6 C-8 -2 -14 -6 -14 -12 A7 7 0 0 1 0 -15 A7 7 0 0 1 14 -12 C14 -6 8 -2 0 6 Z" fill="#FF9EB2" transform="translate(430,296) scale(1.15)"/></g>
+        <path class="f4" d="M118 400 q13 -14 26 0 t26 0 t26 0" stroke="#35BBA3" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <circle cx="96" cy="196" r="6" fill="#FFC9B8"/>
+        <circle cx="452" cy="196" r="8" fill="#FFE3C9"/>
+        <circle cx="180" cy="66" r="5" fill="#FFC9B8"/>
+        <circle cx="392" cy="52" r="4" fill="#35BBA3" opacity=".6"/>
+
+        <!-- 便利贴 -->
+        <g transform="rotate(7 424 214)">
+          <rect x="384" y="174" width="80" height="80" rx="8" fill="#FFF3C4"/>
+          <path d="M0 6 C-8 -2 -14 -6 -14 -12 A7 7 0 0 1 0 -15 A7 7 0 0 1 14 -12 C14 -6 8 -2 0 6 Z" fill="#FF9EB2" transform="translate(424,200) scale(.8)"/>
+        </g>
+
+        <!-- 咖啡杯 -->
+        <g>
+          <rect x="424" y="330" width="38" height="34" rx="10" fill="#FFFFFF" stroke="#F0E0D2" stroke-width="2.5"/>
+          <path d="M462 338 q13 8 0 18" stroke="#F0E0D2" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <rect x="420" y="322" width="46" height="9" rx="4.5" fill="#FFC24B"/>
+          <path d="M434 312 q4 -8 0 -14 M452 312 q4 -8 0 -14" stroke="#E8C9B8" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <!-- 人物 -->
+        <g>
+          <rect x="252" y="176" width="36" height="26" rx="10" fill="#FFDCC4"/>
+          <path d="M220 200 q50 -32 100 0 l0 34 -100 0 z" fill="#FF7A59"/>
+          <path d="M236 200 q34 -20 68 0 l0 10 -68 0 z" fill="#EF5B36" opacity=".25"/>
+          <circle cx="224" cy="152" r="8" fill="#FFDCC4"/>
+          <circle cx="316" cy="152" r="8" fill="#FFDCC4"/>
+          <circle cx="270" cy="146" r="46" fill="#FFDCC4"/>
+          <path d="M224 146 a46 46 0 0 1 92 0 c2 -32 -16 -52 -46 -52 c-30 0 -48 20 -46 52 z" fill="#4A3A31"/>
+          <path d="M218 140 a54 54 0 0 1 104 0" stroke="#4A3A31" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <rect x="208" y="134" width="20" height="36" rx="9" fill="#FFC24B"/>
+          <rect x="312" y="134" width="20" height="36" rx="9" fill="#FFC24B"/>
+          <path d="M248 150 q6 -7 12 0" stroke="#4A3A31" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M280 150 q6 -7 12 0" stroke="#4A3A31" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <ellipse cx="242" cy="163" rx="7" ry="4.5" fill="#FFB4A2"/>
+          <ellipse cx="298" cy="163" rx="7" ry="4.5" fill="#FFB4A2"/>
+          <path d="M262 164 q8 8 16 0" stroke="#4A3A31" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <!-- 代码窗 -->
+        <g transform="rotate(-3 270 300)">
+          <rect x="130" y="222" width="280" height="168" rx="20" fill="#FFFFFF" stroke="#F0E0D2" stroke-width="2.5"/>
+          <circle cx="156" cy="244" r="5.5" fill="#FF7A59"/>
+          <circle cx="174" cy="244" r="5.5" fill="#FFC24B"/>
+          <circle cx="192" cy="244" r="5.5" fill="#35BBA3"/>
+          <rect x="156" y="268" width="100" height="11" rx="5.5" fill="#FFD9CC"/>
+          <rect x="268" y="268" width="118" height="11" rx="5.5" fill="#FFE9C7"/>
+          <rect x="156" y="290" width="150" height="11" rx="5.5" fill="#D8F3ED"/>
+          <rect x="318" y="290" width="68" height="11" rx="5.5" fill="#FFD9CC"/>
+          <rect x="176" y="312" width="110" height="11" rx="5.5" fill="#FFE9C7"/>
+          <rect x="156" y="334" width="84" height="11" rx="5.5" fill="#D8F3ED"/>
+          <rect class="blink" x="250" y="334" width="9" height="11" rx="3" fill="#FF7A59"/>
+          <rect x="156" y="356" width="60" height="11" rx="5.5" fill="#FFE9C7"/>
+        </g>
+
+        <!-- 桌面阴影 -->
+        <ellipse cx="272" cy="398" rx="150" ry="14" fill="#E8B48C" opacity=".35"/>
+      </svg>
+    </div>
+  </div>
+  <div class="scroll-hint">向下滚滚看 ↓</div>
+</header>
+
+<section id="about" class="section">
+  <div class="section-head">
+    <h2>✨ 关于我</h2>
+    <svg class="sq" width="90" height="12" viewBox="0 0 90 12" aria-hidden="true"><path d="M2 8 q11 -10 22 0 t22 0 t22 0 t22 0" stroke="#FFC24B" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+    <p class="section-sub">一个慢慢折腾的创造者</p>
+  </div>
+  <div class="about-card reveal">
+    <p>我是 <strong>Li Suhua</strong>，目前还是一名学生。平时上课、做学生工作，一有空就沉迷于用 AI 工具搞创作，把脑子里奇奇怪怪的想法，一点点变成看得见的作品。</p>
+    <p>这个小站用来安放我的<strong>经历</strong>和<strong>Vibecoding 作品</strong>。它还在慢慢长大，就像我一样。</p>
+    <div class="facts">
+      <span class="fact">🎓 在读学生</span>
+      <span class="fact">🤫 资深 i 人</span>
+      <span class="fact">🛠 Vibecoding 爱好者</span>
+      <span class="fact">🌱 慢慢折腾中</span>
+    </div>
+  </div>
+</section>
+
+<section id="journey" class="section">
+  <div class="section-head">
+    <h2>🌱 一路走来</h2>
+    <svg class="sq" width="90" height="12" viewBox="0 0 90 12" aria-hidden="true"><path d="M2 8 q11 -10 22 0 t22 0 t22 0 t22 0" stroke="#FFC24B" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+    <p class="section-sub">学生工作 · 实习经历</p>
+  </div>
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <span class="tl-dot" style="--c:#FFC24B"></span>
+      <div class="tl-card">
+        <span class="tl-year">2024.9 – 2025.6</span>
+        <h3>🙋 党建中心宣传部 · 干事</h3>
+        <p>华南师范大学经济与管理学院</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <span class="tl-dot" style="--c:#FF7A59"></span>
+      <div class="tl-card">
+        <span class="tl-year">2024.9 – 2025.6</span>
+        <h3>📣 职业生涯发展协会 · 新媒体部干事</h3>
+        <p>华南师范大学职业生涯发展协会</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <span class="tl-dot" style="--c:#35BBA3"></span>
+      <div class="tl-card">
+        <span class="tl-year">2025.9 – 2026.6</span>
+        <h3>🌟 党建中心宣传部 · 副部长</h3>
+        <p>华南师范大学经济与管理学院</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <span class="tl-dot" style="--c:#FF9EB2"></span>
+      <div class="tl-card">
+        <span class="tl-year">2025.9 – 至今</span>
+        <h3>📚 经济学专业 · 团支书</h3>
+        <p>华南师范大学</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <span class="tl-dot" style="--c:#FFC24B"></span>
+      <div class="tl-card">
+        <span class="tl-year">［时间段］</span>
+        <h3>💼 实习经历</h3>
+        <p>［公司 / 岗位］——［你负责的事 / 收获］</p>
+      </div>
+    </div>
+  </div>
+  <p class="tl-note">＊ 带［］的是占位内容——把实习经历发我，我随时补上</p>
+</section>
+
+<section id="honors" class="section">
+  <div class="section-head">
+    <h2>🎖 荣誉奖项</h2>
+    <svg class="sq" width="90" height="12" viewBox="0 0 90 12" aria-hidden="true"><path d="M2 8 q11 -10 22 0 t22 0 t22 0 t22 0" stroke="#FFC24B" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+    <p class="section-sub">一些被看见的时刻 · 点击证书图片可看大图</p>
+  </div>
+  <div class="cards">
+    <article class="card reveal">
+      <a class="cert" href="certs/cert-qihangbei.jpg" target="_blank" rel="noopener"><img src="certs/cert-qihangbei.jpg" alt="第十九届启航杯文献综述专项赛一等奖奖状" loading="lazy" /></a>
+      <div class="card-top">
+        <div class="card-icon">🥇</div>
+        <span class="badge">竞赛</span>
+      </div>
+      <h3>第十九届"启航杯"文献综述专项赛 · 一等奖</h3>
+      <p>与队友合作完成的文献综述作品表现突出，荣获经济与管理学院第十九届"启航杯"文献综述专项赛一等奖（2026.2）。</p>
+      <div class="tags"><span>2026</span><span>一等奖</span></div>
+    </article>
+    <article class="card reveal">
+      <a class="cert" href="certs/cert-innovation-2025.jpg" target="_blank" rel="noopener"><img src="certs/cert-innovation-2025.jpg" alt="中国国际大学生创新大赛2025校赛铜奖证书" loading="lazy" /></a>
+      <div class="card-top">
+        <div class="card-icon">🥉</div>
+        <span class="badge">竞赛</span>
+      </div>
+      <h3>中国国际大学生创新大赛（2025）校赛 · 铜奖</h3>
+      <p>作品《金智学堂——数智驱动型金融素养教育开拓者》荣获华南师范大学中国国际大学生创新大赛（2025）校赛铜奖。</p>
+      <div class="tags"><span>2025</span><span>校赛铜奖</span></div>
+    </article>
+    <article class="card reveal">
+      <a class="cert" href="certs/cert-innovation-bronze.jpg" target="_blank" rel="noopener"><img src="certs/cert-innovation-bronze.jpg" alt="中国国际大学生创新大赛院赛铜奖获奖名单" loading="lazy" /></a>
+      <div class="card-top">
+        <div class="card-icon">🥉</div>
+        <span class="badge">竞赛</span>
+      </div>
+      <h3>中国国际大学生创新大赛院赛 · 铜奖</h3>
+      <p>2026 年度中国国际大学生创新大赛（原"互联网+"）院赛中，一个参与项目荣获铜奖。</p>
+      <div class="tags"><span>2026</span><span>院赛</span><span>铜奖</span></div>
+    </article>
+    <article class="card reveal">
+      <a class="cert" href="certs/cert-innovation-merit.jpg" target="_blank" rel="noopener"><img src="certs/cert-innovation-merit.jpg" alt="中国国际大学生创新大赛院赛优胜奖获奖名单" loading="lazy" /></a>
+      <div class="card-top">
+        <div class="card-icon">🏅</div>
+        <span class="badge">竞赛</span>
+      </div>
+      <h3>中国国际大学生创新大赛院赛 · 优胜奖</h3>
+      <p>2026 年度中国国际大学生创新大赛（原"互联网+"）院赛中，另一个参与项目荣获优胜奖。</p>
+      <div class="tags"><span>2026</span><span>院赛</span><span>优胜奖</span></div>
+    </article>
+    <article class="card reveal">
+      <a class="cert" href="certs/cert-scholarship.jpg" target="_blank" rel="noopener"><img src="certs/cert-scholarship.jpg" alt="华南师范大学优秀学生奖学金二等奖证书" loading="lazy" /></a>
+      <div class="card-top">
+        <div class="card-icon">🎓</div>
+        <span class="badge">奖学金</span>
+      </div>
+      <h3>华南师范大学优秀学生奖学金 · 二等奖</h3>
+      <p>荣获 2024-2025 学年华南师范大学优秀学生奖学金（综合奖）二等奖。</p>
+      <div class="tags"><span>2024-2025 学年</span><span>二等奖</span></div>
+    </article>
+    <article class="card reveal">
+      <a class="cert" href="certs/cert-tuanzhibi.jpg" target="_blank" rel="noopener"><img src="certs/cert-tuanzhibi.jpg" alt="华南师范大学优秀团支部书记表彰名单" loading="lazy" /></a>
+      <div class="card-top">
+        <div class="card-icon">🎖</div>
+        <span class="badge">表彰</span>
+      </div>
+      <h3>华南师范大学优秀团支部书记</h3>
+      <p>获评 2025-2026 学年华南师范大学共青团"优秀团支部书记"。</p>
+      <div class="tags"><span>2025-2026 学年</span><span>校级表彰</span></div>
+    </article>
+    <article class="card reveal">
+      <a class="cert" href="certs/cert-shijian.jpg" target="_blank" rel="noopener"><img src="certs/cert-shijian.jpg" alt="暑期社会实践成果展三等奖奖状" loading="lazy" /></a>
+      <div class="card-top">
+        <div class="card-icon">🌏</div>
+        <span class="badge">竞赛</span>
+      </div>
+      <h3>暑期社会实践成果展 · 三等奖</h3>
+      <p>"荔乡山果"队荣获 2025 年经济与管理学院"青年聚力'百千万'，湾区经济添动能"主题暑期社会实践成果展三等奖。</p>
+      <div class="tags"><span>2025</span><span>三等奖</span></div>
+    </article>
+    <article class="card reveal">
+      <a class="cert" href="certs/cert-dachuang.jpg" target="_blank" rel="noopener"><img src="certs/cert-dachuang.jpg" alt="2026年大创项目立项名单" loading="lazy" /></a>
+      <div class="card-top">
+        <div class="card-icon">📋</div>
+        <span class="badge">立项</span>
+      </div>
+      <h3>2026 年大创项目 · 立项</h3>
+      <p>作为成员参与项目《广东银发经济视域下岭南舞蹈在珠三角地区的推广与创新研究》，获 2026 年大创立项。</p>
+      <div class="tags"><span>2026</span><span>立项</span></div>
+    </article>
+    <article class="card reveal">
+      <a class="cert" href="certs/cert-shujian.jpg" target="_blank" rel="noopener"><img src="certs/cert-shujian.jpg" alt="2025年暑期社会实践活动立项证明" loading="lazy" /></a>
+      <div class="card-top">
+        <div class="card-icon">📋</div>
+        <span class="badge">立项</span>
+      </div>
+      <h3>2025 年暑期社会实践活动 · 立项</h3>
+      <p>作为成员参与华南师范大学荔乡山果实践团《荔乡山果——新媒体与电商助力三江镇非遗与农产品宣传》，获校级立项。</p>
+      <div class="tags"><span>2025</span><span>立项</span></div>
+    </article>
+  </div>
+</section>
+
+<section id="skills" class="section">
+  <div class="section-head">
+    <h2>💻 技能证书</h2>
+    <svg class="sq" width="90" height="12" viewBox="0 0 90 12" aria-hidden="true"><path d="M2 8 q11 -10 22 0 t22 0 t22 0 t22 0" stroke="#FFC24B" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+    <p class="section-sub">计算机等级 · 英语四六级 · 点击可查看证书原件</p>
+  </div>
+  <div class="cards">
+    <article class="card reveal">
+      <a class="cert skill-cert" href="certs/cert-ncre.jpg" target="_blank" rel="noopener"><img src="certs/cert-ncre.jpg" alt="全国计算机等级考试二级合格证书" loading="lazy" /></a>
+      <div class="card-top">
+        <div class="card-icon">💻</div>
+        <span class="badge">计算机等级</span>
+      </div>
+      <h3>全国计算机等级考试 · WPS Office 高级应用与设计</h3>
+      <div class="skill-score"><b>良好</b><span>NCRE 二级</span></div>
+      <p class="skill-meta">2026 年 3 月考试 · 证书编号 6777440166010296</p>
+      <p>熟练运用 WPS 文字、表格、演示三大组件的高级功能，能高效完成文档排版、数据处理与演示设计。</p>
+    </article>
+    <article class="card reveal">
+      <a class="cert skill-cert" href="certs/cert-cet4.jpg" target="_blank" rel="noopener"><img src="certs/cert-cet4.jpg" alt="全国大学英语四级考试成绩报告单" loading="lazy" /></a>
+      <div class="card-top">
+        <div class="card-icon">📗</div>
+        <span class="badge">英语四级</span>
+      </div>
+      <h3>大学英语四级考试（CET-4）</h3>
+      <div class="skill-score"><b>591</b><span>/ 710</span></div>
+      <p class="skill-meta">2025 年 6 月 · 听力 193 / 阅读 230 / 写作与翻译 168</p>
+      <p>具备扎实的英语听说读写基础，能流畅阅读英文资料并进行规范的书面表达。</p>
+    </article>
+    <article class="card reveal">
+      <a class="cert skill-cert" href="certs/cert-cet6.jpg" target="_blank" rel="noopener"><img src="certs/cert-cet6.jpg" alt="全国大学英语六级考试成绩报告单" loading="lazy" /></a>
+      <div class="card-top">
+        <div class="card-icon">📘</div>
+        <span class="badge">英语六级</span>
+      </div>
+      <h3>大学英语六级考试（CET-6）</h3>
+      <div class="skill-score"><b>527</b><span>/ 710</span></div>
+      <p class="skill-meta">2026 年 6 月 · 听力 184 / 阅读 174 / 写作与翻译 169</p>
+      <p>顺利通过六级，能够独立阅读英文文献、观看无字幕课程，并用英语进行日常学术交流。</p>
+    </article>
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <div class="section-head">
+    <h2>🛠 Vibecoding 作品</h2>
+    <svg class="sq" width="90" height="12" viewBox="0 0 90 12" aria-hidden="true"><path d="M2 8 q11 -10 22 0 t22 0 t22 0 t22 0" stroke="#FFC24B" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+    <p class="section-sub">和 AI 结对编程，把点子变成能跑的东西</p>
+  </div>
+  <div class="cards">
+    <article class="card card-ph reveal">
+      <div class="card-top">
+        <div class="card-icon">🚧</div>
+        <span class="badge">虚位以待</span>
+      </div>
+      <h3>［项目名称］</h3>
+      <p>［一句话介绍：它解决什么问题 / 用了哪些工具 / 现在到哪一步了］</p>
+      <div class="tags"><span>待补充</span></div>
+    </article>
+    <article class="card card-ph reveal">
+      <div class="card-top">
+        <div class="card-icon">💡</div>
+        <span class="badge">虚位以待</span>
+      </div>
+      <h3>［项目名称］</h3>
+      <p>［一句话介绍：它解决什么问题 / 用了哪些工具 / 现在到哪一步了］</p>
+      <div class="tags"><span>待补充</span></div>
+    </article>
+  </div>
+</section>
+
+<footer class="footer">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <p class="footer-title">谢谢你滚到这里 🫧</p>
+  <div class="footer-contact">
+    <a href="mailto:2192282723@qq.com"><span>📮 2192282723@qq.com</span></a>
+    <span>🐙 ［GitHub / 社交账号］</span>
+  </div>
+  <p class="footer-note">用 ☕ 和 AI 慢慢搭成 · © <span id="year"></span> Li Suhua</p>
+</footer>
+
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+<script>
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        e.target.addEventListener('animationend', function(){ e.target.classList.remove('reveal','in'); }, {once:true});
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var map = {};
+  links.forEach(function(l){
+    var sec = document.querySelector(l.getAttribute('href'));
+    if(sec) map[sec.id] = l;
+  });
+  var io2 = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){ l.classList.remove('active'); });
+        if(map[e.target.id]) map[e.target.id].classList.add('active');
+      }
+    });
+  }, {rootMargin:'-35% 0px -55% 0px'});
+  Object.keys(map).forEach(function(id){ io2.observe(document.getElementById(id)); });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
